@@ -1,5 +1,8 @@
 package com.example.witch.request;
 
+import org.springframework.stereotype.Component;
+
+
 public class TwoPeople {
     Integer ageOfDatePersonA;
     Integer yearOfDatePersonA;

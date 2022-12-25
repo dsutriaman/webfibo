@@ -5,6 +5,8 @@ import java.util.List;
 public class WitchAlgorithm {
    private FiboAlgorithm algorithm;
    
+   public WitchAlgorithm() {}
+   
    public WitchAlgorithm(FiboAlgorithm algorithm) {
 	   this.algorithm = algorithm;
    }

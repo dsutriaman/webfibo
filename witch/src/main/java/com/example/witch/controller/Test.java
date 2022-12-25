@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.witch.controller.services.Fibo1;
 import com.example.witch.controller.services.FiboAlgorithm;
+import com.example.witch.controller.services.PopulatedService;
 import com.example.witch.controller.services.WitchAlgorithm;
 import com.example.witch.request.TwoPeople;
 
@@ -21,18 +22,17 @@ import com.example.witch.request.TwoPeople;
 @RestController
 public class Test {
 	
-	@Value("${numberOfData}")
-    private Integer numberOfData;                
+	
+	@Autowired
+	private PopulatedService service;
 	
 	@PostMapping("/average")
 	public double allAccess(@Valid @RequestBody TwoPeople people) {
-		FiboAlgorithm algorithm = new Fibo1();
-		WitchAlgorithm wicthAlgorithm = new WitchAlgorithm(algorithm);
-		List<Integer> mapData = algorithm.init(numberOfData);
+		WitchAlgorithm wicthAlgorithm = new WitchAlgorithm();
+		List<Integer> mapData = service.getMapData();
 		Integer numberPersonA = wicthAlgorithm.getNumberOfPeopleKillOnYear(mapData, people.getYearOfDatePersonA() - people.getAgeOfDatePersonA() );
         Integer numberPersonB = wicthAlgorithm.getNumberOfPeopleKillOnYear(mapData, people.getYearOfDatePersonB() - people.getAgeOfDatePersonB() );
-         return  wicthAlgorithm.Average(numberPersonA, numberPersonB);
-		 
+        return  wicthAlgorithm.Average(numberPersonA, numberPersonB);		 
 	}
 	
 }
